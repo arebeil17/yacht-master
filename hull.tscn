@@ -8,13 +8,74 @@ size = Vector3(4, 1, 8)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2qhhq"]
 size = Vector3(4, 1, 8)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hull"]
+albedo_color = Color(0.95, 0.95, 0.9, 1)
+roughness = 0.4
+
+[sub_resource type="SphereMesh" id="SphereMesh_indicator"]
+radius = 0.15
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_socket"]
+albedo_color = Color(0.1, 1.0, 0.2, 1)
+emission_enabled = true
+emission = Color(0.0, 0.8, 0.0, 1)
+emission_energy_multiplier = 1.0
+
 [node name="Hull" type="RigidBody3D" unique_id=569016224]
 script = ExtResource("1_2qhhq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=432545254]
 mesh = SubResource("BoxMesh_q6j13")
+surface_material_override/0 = SubResource("StandardMaterial3D_hull")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1200718079]
 shape = SubResource("BoxShape3D_2qhhq")
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1950410637]
+[node name="SocketDeckFwd" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+
+[node name="Indicator" type="MeshInstance3D" parent="SocketDeckFwd"]
+visible = false
+mesh = SubResource("SphereMesh_indicator")
+surface_material_override/0 = SubResource("StandardMaterial3D_socket")
+
+[node name="SocketDeckAft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
+
+[node name="Indicator" type="MeshInstance3D" parent="SocketDeckAft"]
+visible = false
+mesh = SubResource("SphereMesh_indicator")
+surface_material_override/0 = SubResource("StandardMaterial3D_socket")
+
+[node name="SocketPort" type="Marker3D" parent="."]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="SocketPort"]
+visible = false
+mesh = SubResource("SphereMesh_indicator")
+surface_material_override/0 = SubResource("StandardMaterial3D_socket")
+
+[node name="SocketStbd" type="Marker3D" parent="."]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Indicator" type="MeshInstance3D" parent="SocketStbd"]
+visible = false
+mesh = SubResource("SphereMesh_indicator")
+surface_material_override/0 = SubResource("StandardMaterial3D_socket")
+
+[node name="SocketBow" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 4)
+
+[node name="Indicator" type="MeshInstance3D" parent="SocketBow"]
+visible = false
+mesh = SubResource("SphereMesh_indicator")
+surface_material_override/0 = SubResource("StandardMaterial3D_socket")
+
+[node name="SocketStern" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -4)
+
+[node name="Indicator" type="MeshInstance3D" parent="SocketStern"]
+visible = false
+mesh = SubResource("SphereMesh_indicator")
+surface_material_override/0 = SubResource("StandardMaterial3D_socket")
