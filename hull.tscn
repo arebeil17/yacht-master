@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dyhkn51hnieqs"]
+
+[ext_resource type="Script" uid="uid://d36acnyg7v7x2" path="res://hull.gd" id="1_2qhhq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q6j13"]
+size = Vector3(4, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qhhq"]
+size = Vector3(4, 1, 8)
+
+[node name="Hull" type="RigidBody3D" unique_id=569016224]
+script = ExtResource("1_2qhhq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=432545254]
+mesh = SubResource("BoxMesh_q6j13")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1200718079]
+shape = SubResource("BoxShape3D_2qhhq")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1950410637]
